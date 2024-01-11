@@ -2,13 +2,24 @@
 
 using ConsoleApp78;
 
-var Exit = false;
-while (!Exit)
+while (true)
+{
+    try
+    {
+        run();
+
+    }
+    catch (Exception exception)
+    {
+        ShowError(exception.Message);
+    }
+}
+
+void run()
 {
     var option = GetNumberFromUser("choose:\n" +
                                    "1.add person\n" +
-                                   "2.show list\n" +
-                                   "0.exit" );
+                                   "2.show list\n" );
     switch (option)
     {
         case 1:
@@ -26,17 +37,13 @@ while (!Exit)
             }
             break;
         }
-        case 0:
-        {
-            Exit = true;
-            break;
-        }
         
         default:
             Console.WriteLine("wrong choose");
             break;
     }
 }
+
 
 
 
@@ -78,3 +85,9 @@ static int GetNumberFromUser(string message)
 }
 
     
+static void ShowError(string error)
+{
+    Console.WriteLine("*********");
+    Console.WriteLine(error);
+    Console.WriteLine("*********");
+}
